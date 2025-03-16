@@ -14,9 +14,9 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class CarService {
+public class PriceEstimationService {
 
-    private static final Logger log = LoggerFactory.getLogger(CarService.class);
+    private static final Logger log = LoggerFactory.getLogger(PriceEstimationService.class);
     private List<Car> cars = new ArrayList<>();
 
     @PostConstruct
@@ -56,7 +56,5 @@ public class CarService {
         log.trace(" << getCarById");
         return null;
     }
-
-
 
 }
