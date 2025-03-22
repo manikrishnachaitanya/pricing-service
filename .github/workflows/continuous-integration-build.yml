@@ -32,4 +32,21 @@ jobs:
 
       
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon --refresh-dependencies
+        run: ./gradlew clean build --no-daemon --refresh-dependencies
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/pricing-service:${{ github.sha }} .
+
+      # Step 5: Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Step 6: Push Docker image to Docker Hub
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/pricing-service:${{ github.sha }}
+      #    docker push ${{ secrets.DOCKER_USERNAME }}/car-services:latest  # Optionally, also push with latest tag
