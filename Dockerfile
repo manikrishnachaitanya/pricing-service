@@ -5,10 +5,10 @@ FROM eclipse-temurin:latest
 WORKDIR /app
 
 # Copy the built Spring Boot application JAR to the container
-COPY build/libs/pricing-service-0.0.1-SNAPSHOT.jar pricing.jar
+COPY build/libs/pricing-service-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port
-EXPOSE 8081
+EXPOSE 8093
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "pricing.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
